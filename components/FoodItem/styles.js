@@ -1,11 +1,18 @@
 import { StyleSheet } from "react-native";
-
 const styles = StyleSheet.create({
     foodItem: {
       flexDirection: "row",
       backgroundColor: "#FFFFFF",
-      borderBottomColor: "orange",
       borderBottomWidth: 2,
+      borderBottomColor:"orange",
+      padding: 5,
+      height: 70
+    },
+    foodItem2: {
+      flexDirection: "row",
+      backgroundColor: "#FFFFFF",
+      borderBottomWidth: 2,
+      borderBottomColor:"black",
       padding: 5,
       height: 70
     },

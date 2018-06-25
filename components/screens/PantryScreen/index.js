@@ -1,32 +1,15 @@
 import React, { Component } from "react";
-import { View, Text, SectionList } from "react-native";
 import { connect } from "react-redux";
-import { addFood, deleteFood } from "./../../../actions/creators";
-import FoodItem from "./../../FoodItem";
-import styles from "./styles";
 
+import FoodListView from "./../../FoodListView"
+
+//This is a "container" component that only worries about redux state and
+//data logic.
 class PantryScreen extends Component {
 
   constructor(props) {
     super(props);
   }
-
-  _renderItem = ({ item }) => {
-    return (
-      <FoodItem
-        name={item.name}
-        type={item.type}
-      />
-    );
-  };
-
-  _renderHeader = ({ section }) => {
-    return (
-      <Text style={styles.headingText}>
-        {section.title}
-      </Text>
-    );
-  };
 
   _addKeysToFood = food => {
     return food.map(f => {
@@ -34,7 +17,7 @@ class PantryScreen extends Component {
     });
   };
 
-  _getSectionList = () => {
+ _getSectionList = () => {
     let pantryData = this._addKeysToFood(this.props.pantryData);
     //Handle no data better later
     if (!pantryData) {
@@ -66,12 +49,9 @@ class PantryScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <SectionList
-          sections={this._getSectionList()}
-          renderSectionHeader={this._renderHeader} 
-          renderItem={this._renderItem} />
-      </View>
+      <FoodListView 
+        sectionData = {this._getSectionList()} theme = {this.props.theme}>
+      </FoodListView>
     );
   }
 }
@@ -79,8 +59,10 @@ class PantryScreen extends Component {
 
 //Get store data and pass as props into PantryScreen
 const mapStateToProps = state => {
+  console.log(state.pantry)
   return {
     pantryData: state.pantry,
+    theme: state.settings.theme
   };
 };
 

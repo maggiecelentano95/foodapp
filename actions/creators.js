@@ -1,6 +1,7 @@
 import {
     ADD_FOOD,
-    DELETE_FOOD
+    DELETE_FOOD,
+    CHANGE_THEME
   } from "./types";
   
   import Food from "../data/Food";
@@ -11,4 +12,8 @@ import {
 
   export const deleteFood = id => {
     return { type: DELETE_FOOD, data: id };
+  };
+
+  export const changeTheme = on => {
+    return { type: CHANGE_THEME, data: on };
   };

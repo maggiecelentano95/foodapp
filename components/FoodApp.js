@@ -1,20 +1,27 @@
 import React, {Component} from "react";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import { reducer } from "../reducers/index";
+import { pantry, food, settings } from "../reducers/index";
 import { createBottomTabNavigator } from 'react-navigation';
 import { YellowBox } from "react-native";
 
 import PantryScreen from "./screens/PantryScreen";
 import AddFoodScreen from "./screens/AddFoodScreen"
 import SettingsScreen from "./screens/SettingsScreen"
-
+import PantryRepo from "../data/repo/PantryRepo"
 //Let's ignore this annoying warning for now...
 YellowBox.ignoreWarnings([
   "Warning: isMounted(...) is deprecated"
 ]);
 
-let store = createStore(reducer);
+const initialState = () => {
+  return { pantry: PantryRepo.getPantry("maggie"), settings:{theme:true}};
+};
+
+const store = createStore(
+    combineReducers({ pantry, food, settings }), 
+    initialState()
+)
 
 
 class FoodApp extends Component {

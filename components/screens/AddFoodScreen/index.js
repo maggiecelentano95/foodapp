@@ -76,6 +76,7 @@ class AddFoodScreen extends Component {
 const mapDispatchToProps = dispatch => {
     return {
       addFood: (name, type, expiration) => {
+          console.log(name)
         dispatch(addFood(name, type, expiration));
       }
     };

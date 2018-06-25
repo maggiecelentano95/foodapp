@@ -20,7 +20,7 @@ const FoodItem =
             icon = require('./../../images/vegetable.jpeg')
 
          
-        return <View style={styles.foodItem}>
+        return <View style={props.theme ? styles.foodItem : styles.foodItem2}>
                 <Image style={styles.foodImage} source={icon}/>
                 <TouchableHighlight underlayColor="grey" onPress={() => OnPressButton(props.name)}>
                 <View style={styles.foodInfo}>
@@ -42,4 +42,5 @@ function OnPressButton(foodName) {
 function OnDelete(foodName){
     Alert.alert("Delete" + foodName)
 }
-export default FoodItem;
+  
+  export default FoodItem;
